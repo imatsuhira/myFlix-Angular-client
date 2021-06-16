@@ -33,9 +33,9 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the user registration endpoint
-  public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
-    return this.http.post(apiUrl + 'users', userDetails).pipe(
+  public userRegistration(userData: any): Observable<any> {
+    console.log(userData);
+    return this.http.post(apiUrl + 'users', userData).pipe(
       catchError(this.handleError)
     );
   }
