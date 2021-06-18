@@ -32,6 +32,7 @@ export class UserLoginFormComponent implements OnInit {
       // Logic for a successful user login goes here!
       this.dialogRef.close();
       console.log(result);
+      localStorage.setItem('token',result.token)
       this.snackBar.open('user logged in successfully', 'OK', {
         duration: 2000
       });

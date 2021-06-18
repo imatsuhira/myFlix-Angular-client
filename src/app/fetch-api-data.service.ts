@@ -42,8 +42,8 @@ export class FetchApiDataService {
 
   //Making the api call for the user login endpoint
   userLogin(loginInfo: any): Observable<any> {
-    console.log(loginInfo.Username);
-    return this.http.post(apiUrl + 'users', loginInfo).pipe(
+    console.log(loginInfo);
+    return this.http.post(apiUrl + 'login', loginInfo).pipe(
       catchError(this.handleError)
     );
   }
@@ -55,7 +55,7 @@ export class FetchApiDataService {
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }
@@ -167,8 +167,8 @@ export class FetchApiDataService {
   }
 
   //Non-typed response extraction
-  private extractResponseData(res: Response):
-  any {
+  private extractResponseData(res: Response | {}):
+  Response | {} {
     const body = res;
     return body || { };
   }

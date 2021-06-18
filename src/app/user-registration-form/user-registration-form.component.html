@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <body>
+
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Sign Up!</mat-card-title>
@@ -17,6 +15,7 @@
                           required
                         >
                     </mat-form-field>
+                    <div [hidden]= "userData.Username.length >= 5 || userData.Username.length === 0" >username must be more than four characters</div>
                     <mat-form-field>
                         <input
                             matInput
@@ -42,7 +41,7 @@
                             matInput
                             [(ngModel)]="userData.Birthday"
                             type="date"
-                            placeholder="Birthday"
+                            placeholder="Birthday(optional)"
                             name="Birthday"
                         >
                     </mat-form-field>
@@ -53,10 +52,10 @@
                     mat-raised-button
                     (click)="registerUser()"
                     color="primary"
+    
                 >
                     Sign Up
                 </button>
             </mat-card-actions>
         </mat-card>
-    </body>
-</html>
+ 
