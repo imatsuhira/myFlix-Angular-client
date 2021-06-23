@@ -1,39 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog'
+
 import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
-export class MovieCardComponent {
-  movies: any[] = [];
+export class UserProfileComponent implements OnInit {
+  @Input() userData = { Username: '', Password: '', Email: '', Birthday: ''}
   user: any = {};
-  favoriteMovies: any = []
+  movies: any = [];
+  favoriteMovies: any = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
-    ) { }
+
+  ) { }
 
   ngOnInit(): void {
-    this.getMovies();
-    this.getUser();
+    this.getUser()
   }
 
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      console.log(this.movies);
-      return this.movies;
-    });
-  }
 
   openMovieDescriptionDialog(Description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
@@ -58,21 +51,27 @@ export class MovieCardComponent {
       }
     })
   }
-
+ 
   getUser(): void {
     this.fetchApiData.getUserInfo().subscribe((res: any) => {
       this.user = res;
-      console.log(this.user.FavoriteMovies)
-      return this.user
+      this.getMovies()
+      
     })
   }
 
-  addFavorite(_id: string, title: string): void {
-    this.fetchApiData.addFavoriteMovies(_id).subscribe(() => {
-      this.snackBar.open(`${title} has been added to your favorite`, 'OK', {
-        duration: 2000
-      });
-    })
+  getMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      this.movies = resp;
+      this.filterFavoriteMovies()
+    });
   }
 
+  filterFavoriteMovies(): void {
+    this.movies.forEach((movie: any) => {
+      if(this.user.FavoriteMovies.includes(movie._id)){
+        this.favoriteMovies.push(movie)
+      }
+    });
+  }
 }

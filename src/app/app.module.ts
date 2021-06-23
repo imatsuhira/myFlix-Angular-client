@@ -26,10 +26,12 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent},
   { path: 'movies', component: MovieCardComponent},
+  { path: 'profile', component: UserProfileComponent},
   { path: '', redirectTo: 'welcome', pathMatch:'prefix'},
 ]
 
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     MovieDescriptionComponent,
     MovieGenreComponent,
     MovieDirectorComponent,
-    MainNavComponent
+    MainNavComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

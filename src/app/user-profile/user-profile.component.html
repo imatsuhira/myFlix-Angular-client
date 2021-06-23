@@ -1,6 +1,13 @@
 <app-main-nav></app-main-nav>
-<div class="main-div" style="display: flex;">
-    <mat-card class="movie-card" *ngFor="let movie of movies;" style="flex: 1 1 auto;">
+<h1>My Profile</h1>
+<p>Username: {{user.Username}}</p>
+<p>Password: ****</p>
+<p>Email: {{user.Email}}</p>
+<p>Birthday: {{user.Birthday}}</p>
+
+<h2>My Favorite Movies</h2>
+<div class="main-div" style="display: flex; overflow: auto;">
+    <mat-card class="movie-card" *ngFor="let movie of favoriteMovies;" style="flex: 1 1 auto;">
         <mat-card-header>
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Directed by: <button mat-button color="primary"
@@ -15,7 +22,6 @@
             <button mat-button color="primary" (click)="openMovieDescriptionDialog(movie.Description)">
                 Description
             </button>
-            <mat-icon (click)="addFavorite(movie._id, movie.Title)">favorite_border</mat-icon>
         </mat-card-actions>
     </mat-card>
 </div>
