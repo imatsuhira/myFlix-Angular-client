@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon'
+import { MatToolbarModule } from '@angular/material/toolbar'
 
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,11 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { MovieDescriptionComponent } from './movie-description/movie-description.component';
 import { MovieGenreComponent } from './movie-genre/movie-genre.component';
-import { MovieDirectorComponent } from './movie-director/movie-director.component';
+import { MovieDirectorComponent } from './movie-director/movie-director.component';  
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent},
@@ -37,7 +42,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     MovieDescriptionComponent,
     MovieGenreComponent,
-    MovieDirectorComponent
+    MovieDirectorComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,11 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatSnackBarModule,
     RouterModule.forRoot(appRoutes),
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

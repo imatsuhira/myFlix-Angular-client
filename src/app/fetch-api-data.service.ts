@@ -66,7 +66,7 @@ export class FetchApiDataService {
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }
@@ -78,7 +78,7 @@ export class FetchApiDataService {
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }
@@ -90,7 +90,7 @@ export class FetchApiDataService {
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }

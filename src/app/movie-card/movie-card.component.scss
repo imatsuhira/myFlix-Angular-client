@@ -1,0 +1,14 @@
+.main-div{
+    overflow: auto;
+}
+
+.movie-card{
+    margin-bottom: 15px;
+    min-height: 425px;
+    max-height: 500px;
+}
+
+.movie-img {
+    height: 250px;
+    object-fit: cover;
+}
