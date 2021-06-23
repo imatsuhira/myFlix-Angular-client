@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -10,12 +9,16 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class MainNavComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  constructor(
+    public router: Router,
+    public snackBar: MatSnackBar
+  ) { }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
-
+  logoutUser(){
+    localStorage.clear()
+    this.snackBar.open('user logout successfully', 'OK', {
+      duration: 2000
+    })
+    this.router.navigate(['welcome'])
+  }
 }
