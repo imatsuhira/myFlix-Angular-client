@@ -11,4 +11,14 @@
 .movie-img {
     height: 250px;
     object-fit: cover;
+    border-radius: 5%;
+    margin-bottom: 20px;
+    margin-right: 35px;
+}
+
+h1 {
+    margin-top: 20px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 3px solid darkorange;
 }

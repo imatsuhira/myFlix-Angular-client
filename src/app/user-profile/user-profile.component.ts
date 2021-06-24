@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
+import { ChangeProfileFormComponent } from '../change-profile-form/change-profile-form.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,15 +14,15 @@ import { MovieDirectorComponent } from '../movie-director/movie-director.compone
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: ''}
   user: any = {};
   movies: any = [];
   favoriteMovies: any = [];
+  isLoaded = false;
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -55,8 +57,7 @@ export class UserProfileComponent implements OnInit {
   getUser(): void {
     this.fetchApiData.getUserInfo().subscribe((res: any) => {
       this.user = res;
-      this.getMovies()
-      
+      this.getMovies()    
     })
   }
 
@@ -72,6 +73,21 @@ export class UserProfileComponent implements OnInit {
       if(this.user.FavoriteMovies.includes(movie._id)){
         this.favoriteMovies.push(movie)
       }
+      this.isLoaded = true;
     });
+  }
+
+  openUserProfileChangeDialog(): void {
+    this.dialog.open(ChangeProfileFormComponent, {
+      width: '280px'
+    })
+  }
+
+  deleteFavoriteMovies(_id: string, title: string): void{
+    this.fetchApiData.deleteFavoriteMovies(_id).subscribe(() => { 
+      this.snackBar.open(`${title} has been removed from your favorite`, 'OK', {
+        duration: 2000
+      });
+    })
   }
 }

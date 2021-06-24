@@ -1,27 +1,37 @@
 <app-main-nav></app-main-nav>
-<h1>My Profile</h1>
-<p>Username: {{user.Username}}</p>
-<p>Password: ****</p>
-<p>Email: {{user.Email}}</p>
-<p>Birthday: {{user.Birthday}}</p>
 
-<h2>My Favorite Movies</h2>
-<div class="main-div" style="display: flex; overflow: auto;">
+<h1>My Profile</h1>
+<div class="profile">
+    <p>Username: <strong>{{user.Username}}</strong></p>
+    <p>Password: ****</p>
+    <p>Email: <strong>{{user.Email}}</strong></p>
+    <p>Birthday: <strong>{{user.Birthday}}</strong></p>
+    <div class="button-container">
+        <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="openUserProfileChangeDialog()">Change Profile</button>
+        <button mat-raised-button color="accent">Delete User</button>
+    </div>
+</div>
+
+<h1>My Favorite</h1>
+<div *ngIf="this.favoriteMovies.length === 0 && this.isLoaded" style="margin-left: 10px;">You don't have any favorite movies yet</div>
+<div *ngIf="!this.isLoaded" style="margin-left: 10px;">Loading favorite movies...</div>
+<div class="main-div" style="display: flex;">
     <mat-card class="movie-card" *ngFor="let movie of favoriteMovies;" style="flex: 1 1 auto;">
         <mat-card-header>
-            <mat-card-title>{{movie.Title}}</mat-card-title>
-            <mat-card-subtitle>Directed by: <button mat-button color="primary"
-                    (click)="openDirectorDialog(movie.Director)">{{movie.Director.Name}}</button>
-            </mat-card-subtitle>
+            <img class="movie-img" src={{movie.ImagePath}} alt={{movie.Title}} />
         </mat-card-header>
-        <img class="movie-img" src={{movie.ImagePath}} alt={{movie.Title}} />
-        <mat-card-actions>
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+        <mat-card-subtitle>Directed by: <button mat-button color="primary"
+                (click)="openDirectorDialog(movie.Director)">{{movie.Director.Name}}</button>
+        </mat-card-subtitle>
+        <mat-card-actions class="btn-container">
             <button mat-button color="primary" (click)="openMovieGenreDialog(movie.Genre)">
                 Genre
             </button>
             <button mat-button color="primary" (click)="openMovieDescriptionDialog(movie.Description)">
                 Description
             </button>
+            <button mat-button color="accent" (click)="deleteFavoriteMovies(movie._id, movie.Title)">Remove</button>
         </mat-card-actions>
     </mat-card>
 </div>

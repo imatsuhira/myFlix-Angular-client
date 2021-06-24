@@ -138,11 +138,12 @@ export class FetchApiDataService {
   // Edit user
   editUser(): Observable<any>{
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/:Username', {headers: new HttpHeaders(
+    const username = localStorage.getItem('user')
+    return this.http.put(apiUrl + 'users/' + username, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       )
   }
@@ -150,24 +151,39 @@ export class FetchApiDataService {
   // Delete user
   deleteUser(): Observable<any>{
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/:Username', {headers: new HttpHeaders(
+    const username = localStorage.getItem('user')
+    return this.http.delete(apiUrl + 'users/' + username, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       )
   }
 
-  deleteFavoriteMovies(): Observable<any>{
+  deleteFavoriteMovies(_id: string): Observable<any>{
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/Username/movies/:_id', { headers: new HttpHeaders(
+    const username = localStorage.getItem('user')
+    return this.http.delete(apiUrl + 'users/' + username + '/Movies/' + _id, { headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       )
+  }
+
+  changeUserInfo(newUserData: any): Observable<any>{
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    return this.http.put(apiUrl + 'users/' + username, newUserData, { headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      }
+    )}).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    )
   }
 
   //Non-typed response extraction

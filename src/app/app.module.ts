@@ -27,6 +27,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ChangeProfileFormComponent } from './change-profile-form/change-profile-form.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent},
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     MovieGenreComponent,
     MovieDirectorComponent,
     MainNavComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ChangeProfileFormComponent
   ],
   imports: [
     BrowserModule,

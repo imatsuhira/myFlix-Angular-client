@@ -1,13 +1,14 @@
 <app-main-nav></app-main-nav>
+<h1>All Movies</h1>
 <div class="main-div" style="display: flex;">
     <mat-card class="movie-card" *ngFor="let movie of movies;" style="flex: 1 1 auto;">
         <mat-card-header>
-            <mat-card-title>{{movie.Title}}</mat-card-title>
-            <mat-card-subtitle>Directed by: <button mat-button color="primary"
-                    (click)="openDirectorDialog(movie.Director)">{{movie.Director.Name}}</button>
-            </mat-card-subtitle>
+            <img class="movie-img" src={{movie.ImagePath}} alt={{movie.Title}} />
         </mat-card-header>
-        <img class="movie-img" src={{movie.ImagePath}} alt={{movie.Title}} />
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+        <mat-card-subtitle>Directed by: <button mat-button color="primary"
+                (click)="openDirectorDialog(movie.Director)">{{movie.Director.Name}}</button>
+        </mat-card-subtitle>
         <mat-card-actions>
             <button mat-button color="primary" (click)="openMovieGenreDialog(movie.Genre)">
                 Genre
