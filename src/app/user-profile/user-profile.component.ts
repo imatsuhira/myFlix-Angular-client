@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +7,7 @@ import { MovieDescriptionComponent } from '../movie-description/movie-descriptio
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 import { ChangeProfileFormComponent } from '../change-profile-form/change-profile-form.component';
+import { DeleteConfirmationComponent } from '../delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -88,6 +89,12 @@ export class UserProfileComponent implements OnInit {
       this.snackBar.open(`${title} has been removed from your favorite`, 'OK', {
         duration: 2000
       });
+    })
+  }
+
+  deleteConfirmationDialog(): void{
+    this.dialog.open(DeleteConfirmationComponent, {
+      width: '280px'
     })
   }
 }

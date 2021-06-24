@@ -28,6 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ChangeProfileFormComponent } from './change-profile-form/change-profile-form.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent},
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     MovieDirectorComponent,
     MainNavComponent,
     UserProfileComponent,
-    ChangeProfileFormComponent
+    ChangeProfileFormComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@
     <p>Birthday: <strong>{{user.Birthday}}</strong></p>
     <div class="button-container">
         <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="openUserProfileChangeDialog()">Change Profile</button>
-        <button mat-raised-button color="accent">Delete User</button>
+        <button mat-raised-button color="accent" (click)='deleteConfirmationDialog()'>Delete User</button>
     </div>
 </div>
 

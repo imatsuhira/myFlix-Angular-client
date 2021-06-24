@@ -51,7 +51,7 @@ export class FetchApiDataService {
   // Get all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
+    return this.http.get(apiUrl + 'movies', { headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
@@ -62,7 +62,7 @@ export class FetchApiDataService {
   // To get a single movie (by title)
   getMovieInfo(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/:Title', {headers: new HttpHeaders(
+    return this.http.get(apiUrl + 'movies/:Title', { headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
@@ -74,7 +74,7 @@ export class FetchApiDataService {
   // To get a director (by name)
   getDirector(): Observable<any>{
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/director/:Name', {headers: new HttpHeaders(
+    return this.http.get(apiUrl + 'movies/director/:Name', { headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
@@ -139,7 +139,7 @@ export class FetchApiDataService {
   editUser(): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user')
-    return this.http.put(apiUrl + 'users/' + username, {headers: new HttpHeaders(
+    return this.http.put(apiUrl + 'users/' + username, { headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
@@ -152,7 +152,7 @@ export class FetchApiDataService {
   deleteUser(): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user')
-    return this.http.delete(apiUrl + 'users/' + username, {headers: new HttpHeaders(
+    return this.http.delete(apiUrl + 'users/' + username, { headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
