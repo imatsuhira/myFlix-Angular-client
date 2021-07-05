@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss']
 })
+
+/**
+ * This component provides navigation bar with user logout function.
+ */
 export class MainNavComponent {
 
   constructor(
@@ -14,6 +18,10 @@ export class MainNavComponent {
     public snackBar: MatSnackBar
   ) { }
 
+  /**
+   * When user pushes logout button, this function will be called, 
+   * then clear localStorage and direct to login page.
+   */
   logoutUser(){
     localStorage.clear()
     this.snackBar.open('user logout successfully', 'OK', {

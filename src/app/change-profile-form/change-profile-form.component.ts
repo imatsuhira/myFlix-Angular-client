@@ -11,6 +11,10 @@ import { Router } from '@angular/router'
   templateUrl: './change-profile-form.component.html',
   styleUrls: ['./change-profile-form.component.scss']
 })
+
+/**
+ * This component provides modal/dialog to update user information.
+ */
 export class ChangeProfileFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: ''}
   constructor(
@@ -24,6 +28,10 @@ export class ChangeProfileFormComponent implements OnInit {
     // Do nothing
   }
 
+  /**
+   * This calls changeUserInfo on FetchApiDataService to update user info.
+   * When update is done, it leads to profile page.
+   */
   updateUser(): void {
     this.fetchApiData.changeUserInfo(this.userData).subscribe((result) => {
       //Logic for a successful user profile change goes here!

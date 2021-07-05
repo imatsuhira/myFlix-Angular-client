@@ -6,6 +6,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './movie-description.component.html',
   styleUrls: ['./movie-description.component.scss']
 })
+
+/**
+ * This component provides modal/dialog of movie description.
+ */
 export class MovieDescriptionComponent implements OnInit {
 
   constructor(

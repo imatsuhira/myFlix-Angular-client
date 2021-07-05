@@ -14,6 +14,10 @@ import { DeleteConfirmationComponent } from '../delete-confirmation/delete-confi
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
+
+/**
+ * This component shows user information including favorite movies as well as user deletion confirmation function and change user profile function.
+ */
 export class UserProfileComponent implements OnInit {
   user: any = {};
   movies: any = [];
@@ -26,11 +30,19 @@ export class UserProfileComponent implements OnInit {
     public snackBar: MatSnackBar
   ) { }
 
+  /**
+   * When user profile is rendered, getUser function will be called to show user information
+   */
   ngOnInit(): void {
     this.getUser()
   }
 
 
+  /**
+   * This function provides modal/dialog to show movie description as well as the one on movie-card.
+   * @param Description 
+   * @type {string}
+   */
   openMovieDescriptionDialog(Description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: {
@@ -39,6 +51,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * This function provides modal/dialog to show  movie genre as well as the one on movie-card.
+   * @param Genre 
+   */
   openMovieGenreDialog(Genre: []): void {
     this.dialog.open(MovieGenreComponent, {
       data: {
@@ -47,6 +63,10 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * This function provides modal/dialog to show director information as well as the one on movie-card.
+   * @param Director 
+   */
   openDirectorDialog(Director: []): void {
     this.dialog.open(MovieDirectorComponent, {
       data: {
@@ -54,7 +74,11 @@ export class UserProfileComponent implements OnInit {
       }
     })
   }
- 
+  
+  /**
+   * This function calls getUserInfo on FetchApiDataService to get user information.
+   * When it received user information, it calls getMovies function.
+   */
   getUser(): void {
     this.fetchApiData.getUserInfo().subscribe((res: any) => {
       this.user = res;
@@ -62,6 +86,10 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * This function calls getAllMovies on FetchApiDataService to get all movies.
+   * When it received user information, set movies and calls filterFavoriteMovies to filter users favorite movies.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -69,6 +97,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * This function filters favorite movies from all movies.
+   * Also, when it's getting data from API, it shows "Lording favorite movies..." message.
+   */
   filterFavoriteMovies(): void {
     this.movies.forEach((movie: any) => {
       if(this.user.FavoriteMovies.includes(movie._id)){
@@ -78,12 +110,22 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * This function shows ChangeProfileComponent which contains form to change user information.
+   */
   openUserProfileChangeDialog(): void {
     this.dialog.open(ChangeProfileFormComponent, {
       width: '280px'
     })
   }
 
+  /**
+   * This function enables user to delete movies with deleteFavoriteMovies on FetchApiDataService.
+   * @param _id 
+   * @type {string}
+   * @param title 
+   * @type {string}
+   */
   deleteFavoriteMovies(_id: string, title: string): void{
     this.fetchApiData.deleteFavoriteMovies(_id).subscribe(() => { 
       this.snackBar.open(`${title} has been removed from your favorite`, 'OK', {
@@ -92,6 +134,9 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  /**
+   * When user clicks "delete user", this function will be called, then shows DeletionConfirmationComponent to confirm user deletion.
+   */
   deleteConfirmationDialog(): void{
     this.dialog.open(DeleteConfirmationComponent, {
       width: '280px'

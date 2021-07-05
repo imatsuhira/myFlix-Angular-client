@@ -16,6 +16,10 @@ import { Router } from '@angular/router';
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
+
+/**
+ * This component provides user login form modal/dialog to let user login.
+ */
 export class UserLoginFormComponent implements OnInit {
 
   @Input()loginInfo = { Username: '', Password: ''};
@@ -29,7 +33,9 @@ export class UserLoginFormComponent implements OnInit {
     // Do nothing
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.loginInfo).subscribe((result) => {
       // Logic for a successful user login goes here!

@@ -15,7 +15,11 @@ export class FetchApiDataService {
   
   constructor(private http: HttpClient) {}
 
-   // Handle error
+   /**
+    * This function is for handling error
+    * @param error 
+    * @returns Error message
+    */
    private handleError(error: HttpErrorResponse):
   any {
     if(error.error instanceof ErrorEvent ) {
@@ -32,7 +36,11 @@ export class FetchApiDataService {
     );
   }
 
-  // Making the api call for the user registration endpoint
+  /**
+   * Making the api call for the user registration endpoint
+   * @param userData : Username, Password, Birthday, Email
+   * @returns Use POST method to sent user information to backend
+   */
   public userRegistration(userData: any): Observable<any> {
     console.log(userData);
     return this.http.post(apiUrl + 'users', userData).pipe(
@@ -40,7 +48,11 @@ export class FetchApiDataService {
     );
   }
 
-  //Making the api call for the user login endpoint
+  /**
+   * Making the api call for the user login endpoint
+   * @param loginInfo : Username, Password
+   * @returns Bearer token from backend
+   */
   userLogin(loginInfo: any): Observable<any> {
     console.log(loginInfo);
     return this.http.post(apiUrl + 'login', loginInfo).pipe(
@@ -48,7 +60,10 @@ export class FetchApiDataService {
     );
   }
 
-  // Get all movies
+  /**
+   * GET all movies from database using token on localStorage
+   * @returns Array of movie objects from backend
+   */
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', { headers: new HttpHeaders(
@@ -59,7 +74,10 @@ export class FetchApiDataService {
         catchError(this.handleError)
       );
   }
-  // To get a single movie (by title)
+  /**
+   * GET single movie by it's name using bearer token from localStorage
+   * @returns Single movie object from backend
+   */
   getMovieInfo(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/:Title', { headers: new HttpHeaders(
@@ -71,7 +89,11 @@ export class FetchApiDataService {
       );
   }
 
-  // To get a director (by name)
+  /**
+   * GET Director details by their name using bearer token from localStorage
+   * (not used on app as user can read Genre information on movie details(getMovies()))
+   * @returns Single director object from backend
+   */
   getDirector(): Observable<any>{
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/director/:Name', { headers: new HttpHeaders(
@@ -83,7 +105,11 @@ export class FetchApiDataService {
       );
   }
 
-  // To get a genre by title
+  /**
+   * GET genre information by its title using bearer token from localStorage
+   * (not used on app as user can read Genre information on movie details(getMovies()))
+   * @returns Single genre object from backend
+   */
   getGenre(): Observable<any>{
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genre/:Title', { headers: new HttpHeaders(
@@ -95,7 +121,10 @@ export class FetchApiDataService {
       );
   }
 
-  // To get a user by name
+  /**
+   * GET a single user information with bearer token and username from localStorage(username for endpoint)
+   * @returns Single user information from backend
+   */
   getUserInfo(): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user')
@@ -109,7 +138,10 @@ export class FetchApiDataService {
       );
   }
 
-  // To get favorite movies for a user
+  /**
+   * GET user favorite movies with bearer token
+   * @returns Favorite movies object form backend
+   */
   getFavoriteMovies(): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -122,7 +154,12 @@ export class FetchApiDataService {
       );
   }
 
-  // Add movies to a favorite movies
+  /**
+   * POST movie to user's favorite with bearer token
+   * @param _id 
+   * @type {string}
+   * @returns POST movie to backend
+   */
   addFavoriteMovies(_id: string): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -135,20 +172,10 @@ export class FetchApiDataService {
       );
   } 
 
-  // Edit user
-  editUser(): Observable<any>{
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('user')
-    return this.http.put(apiUrl + 'users/' + username, { headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
-        map(this.extractResponseData),
-        catchError(this.handleError)
-      )
-  }
-
-  // Delete user
+  /**
+   * Use DELETE method to delete user information
+   * @returns DELETE data on backend
+   */
   deleteUser(): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user')
@@ -161,6 +188,12 @@ export class FetchApiDataService {
       )
   }
 
+  /**
+   * DELETE user's favorite movies
+   * @param _id 
+   * @type {string}
+   * @returns DELETE favorite movie on backend 
+   */
   deleteFavoriteMovies(_id: string): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user')
@@ -173,6 +206,11 @@ export class FetchApiDataService {
       )
   }
 
+  /**
+   * PUT new user data to backend
+   * @param newUserData 
+   * @returns Update backend user data 
+   */
   changeUserInfo(newUserData: any): Observable<any>{
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
@@ -186,7 +224,11 @@ export class FetchApiDataService {
     )
   }
 
-  //Non-typed response extraction
+  /**
+   * //Non-typed response extraction
+   * @param res 
+   * @returns 
+   */
   private extractResponseData(res: Response | {}):
   Response | {} {
     const body = res;

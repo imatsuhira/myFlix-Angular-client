@@ -15,6 +15,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './user-registration-form.component.html',
   styleUrls: ['./user-registration-form.component.scss']
 })
+
+/**
+ * This component provides modal/dialog user registration form.
+ */
 export class UserRegistrationFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
@@ -28,10 +32,12 @@ export class UserRegistrationFormComponent implements OnInit {
     // Do nothing
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend.
+   * When successful, comment "user registered successfully" pops up.
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
-      // Logic for a successful user registration goes here!(To be implemented)
       this.dialogRef.close(); // This will close the modal on success
       console.log(result);
       this.snackBar.open('user registered successfully!', 'OK', {

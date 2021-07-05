@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './delete-confirmation.component.html',
   styleUrls: ['./delete-confirmation.component.scss']
 })
+
+/**
+ * This component provides dialog/modal to confirm deletion of user.
+ */
 export class DeleteConfirmationComponent implements OnInit {
 
   constructor(
@@ -22,7 +26,9 @@ export class DeleteConfirmationComponent implements OnInit {
   ngOnInit(): void {
     // Do nothing
   }
-
+  /**
+   * Call deleteUser on FetchApiDataService to delete user information.
+   */
   deleteUser(): void {
     this.fetchApiData.deleteUser()
     this.dialogRef.close()
@@ -33,6 +39,9 @@ export class DeleteConfirmationComponent implements OnInit {
     })
   }
 
+  /**
+   * This cancels/closes delete confirmation modal
+   */
   cancelDeleteUser(): void {
     this.dialogRef.close()
   }
