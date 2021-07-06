@@ -1,6 +1,27 @@
 # MyFlixAngularClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+MyFlix is a client-side movie database app with REST API and backend [database](https://github.com/imatsuhira/movie_api)
+
+## This app provides
+ * Register new user
+ * Login user
+ * See all movies list
+ * See movie genre
+ * See movie Director
+ * Add to favorites
+ * Delete from favorites
+ * Update user information
+ * Delete user account
+
+You can check hosted projece on [gh-pages](https://imatsuhira.github.io/myFlix-Angular-client/welcome)
+
+
+
+https://user-images.githubusercontent.com/73891874/124609387-ddde4680-de6f-11eb-96d7-6d1b41f4c727.mov
+
+
+ 
 
 ## Development server
 
