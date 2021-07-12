@@ -14,7 +14,7 @@ MyFlix is a client-side movie database app with REST API and backend [database](
  * Update user information
  * Delete user account
 
-You can check hosted projece on [gh-pages](https://imatsuhira.github.io/myFlix-Angular-client/welcome)
+You can check hosted project on [gh-pages](https://imatsuhira.github.io/myFlix-Angular-client/welcome)
 
 
 
